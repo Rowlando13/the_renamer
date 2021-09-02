@@ -1,0 +1,4 @@
+# ignore all .env files
+*.env
+**/__pycache__
+*.sqlite3
