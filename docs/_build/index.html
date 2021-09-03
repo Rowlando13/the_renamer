@@ -1,0 +1,177 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Welcome! &#8212; The Renamer 0.0.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/classic.css" />
+    
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="nav-item nav-item-0"><a href="#">The Renamer 0.0.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Welcome!</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="toctree-wrapper compound">
+</div>
+<section id="welcome">
+<h1>Welcome!<a class="headerlink" href="#welcome" title="Permalink to this headline">¶</a></h1>
+<p>This project is ongoing. If you have a problem, please open an issue on the github page. If you would like to add functionality, then open an issue and we can discuss it.</p>
+<p><a class="reference external" href="https://github.com/Rowlando13/the_renamer">Github Page</a></p>
+</section>
+<section id="about-the-renamer">
+<h1>About The Renamer<a class="headerlink" href="#about-the-renamer" title="Permalink to this headline">¶</a></h1>
+<p>What does The Renamer do?</p>
+<p>The Renamer is used to rename entries in pandas dataframe. It first reads in a csv file that has codes, or already known names to support identification and renaming. It uses a dictionary, with zip and map to simplify the process.</p>
+<p>What does The Renamer do for me?</p>
+<p>It helps separate data from code to keep your code base small and makes it easier to work with renaming a lot entries since you can edit the ids.csv in a full featured editor like excel. It also makes renaming things more repeatable since you just put the csv containing the ids in your code base, import build_ids and renamer and go.</p>
+<p>If you do exploratory data analysis a lot, then you probably already have a system. Keep it, and augment it with The Renamer, or better yet make a pull request, and I can integrate your system.</p>
+</section>
+<section id="notes">
+<h1>Notes<a class="headerlink" href="#notes" title="Permalink to this headline">¶</a></h1>
+<p>To see a nice implementation, go to my <a class="reference external" href="url">Medium Article</a> .</p>
+<p>Excel Usage</p>
+<p>The file used to contain the codes and known names is a csv file. Excel generally does well with csv files; however, it has a nasty habit of converting 0230 to an integer then 230 when you open the file by double clicking it. To get around this, open Excel first and use Excel to open the file. By default it will give you an option to pick the deliminator and assign the text type to each column.</p>
+<p>Test Coverage</p>
+<p>There is pretty good test coverage, but I use some 2 mb files to test it, so the tests are in the ‘test-master’ branch.  If you are having an issue, the first thing, I will ask you to do is clone the most recent ‘test-master’ branch, run the tests, and then send me a screen shot.</p>
+<p><a class="reference external" href="https://github.com/Rowlando13/the_renamer">Github Test-Master Branch</a></p>
+</section>
+<section id="best-way-to-use">
+<h1>Best Way to Use<a class="headerlink" href="#best-way-to-use" title="Permalink to this headline">¶</a></h1>
+<p>Currentely, the best way to use The Renamer is by cloning the master branch and placing the_renamer.py and ids.csv in your working directory. The code is well thought out, but I did not want to clutter PyPI since it is only ~200 lines. If there is enough desire, then I am happy to.</p>
+<p><a class="reference external" href="https://github.com/Rowlando13/the_renamer">Github Master Branch</a></p>
+</section>
+<section id="functions">
+<h1>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="the_renamer.build_ids">
+<span class="sig-prename descclassname"><span class="pre">the_renamer.</span></span><span class="sig-name descname"><span class="pre">build_ids</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path_to_ids</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check_keys_unique</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#the_renamer.build_ids" title="Permalink to this definition">¶</a></dt>
+<dd><p>Makes dictionaries for for all columns in ids csv file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>path_to_ids</strong> (<em>path</em><em> or </em><em>string</em>) – Csv file containing known names and             codes. Cannot have any blank entries.</p></li>
+<li><p><strong>check_keys_unique</strong> (<em>boolean</em>) – Prevents duplicate keys from being             overwritten with last value.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Same order as the codes in the ids csv.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list of dicts</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="the_renamer.renamer">
+<span class="sig-prename descclassname"><span class="pre">the_renamer.</span></span><span class="sig-name descname"><span class="pre">renamer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rename_col</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">code_col</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rename_dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_original</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">replacement_value</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#the_renamer.renamer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Renames column entries based on rename dictionary.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>df</strong> (<em>pd.DataFrame</em>) – Dataframe in.</p></li>
+<li><p><strong>rename_col</strong> (<em>str</em>) – Name of column for entries to rename.</p></li>
+<li><p><strong>code_col</strong> (<em>str</em>) – Name of column for entries that will be used             identify the row. May be the same as rename_col.</p></li>
+<li><p><strong>rename_dict</strong> (<em>dict</em>) – Map from code_col value to rename_col new value.         return_original (bool): Whether to alter values not specified             in ids.csv,</p></li>
+<li><p><strong>replacement_value</strong> (<em>any</em>) – If return_original equals False, value             to replace unspecified values.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Transformed dataframe.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>pd.DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="ids-csv">
+<h1>IDs.csv<a class="headerlink" href="#ids-csv" title="Permalink to this headline">¶</a></h1>
+<dl class="simple">
+<dt>This just a normal csv file with a few rules:</dt><dd><ol class="arabic simple">
+<li><p>In the second row of each column you must have ‘destination’, ‘one’, or ‘many’.</p></li>
+<li><p>You can only have one ‘destination’ column. You can have arbitrarily many ‘one’ or ‘many’ columns. The columns can be arbitrarily long.</p></li>
+<li><p>The entries in the ‘destination’ or ‘one’ column can be any type, but the ‘many’ columns entries must be str type.</p></li>
+</ol>
+</dd>
+</dl>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="#">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Welcome!</a></li>
+<li><a class="reference internal" href="#about-the-renamer">About The Renamer</a></li>
+<li><a class="reference internal" href="#notes">Notes</a></li>
+<li><a class="reference internal" href="#best-way-to-use">Best Way to Use</a></li>
+<li><a class="reference internal" href="#functions">Functions</a></li>
+<li><a class="reference internal" href="#ids-csv">IDs.csv</a></li>
+</ul>
+
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/index.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="nav-item nav-item-0"><a href="#">The Renamer 0.0.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Welcome!</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2021, Edward Girling.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.1.2.
+    </div>
+  </body>
+</html>

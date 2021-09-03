@@ -2,6 +2,7 @@ import os
 
 import pandas as pd 
 
+
 # Setting value for id csv. You cannot have any blank values in ids csv file. 
 none_value = '<NONE>'
 # All entries for id csv in many or single valued columns must be type string. 
@@ -10,12 +11,10 @@ none_value = '<NONE>'
 def base_clean(df, cols_no_space=None, format_headers=True):
     '''
     Data cleaning that I always apply to data when it is read in. 
-    Args / Kwargs:
-        df (pd.DataFrame): Dataframe in.
-        cols_no_space (list): Column names for columns that will have spaces 
-        removed from beginning and end. Entries must be string type.
-    Returns:
-        df (pd.DataFrame): Cleaned dataframe.
+
+    :param df:  (pd.DataFrame) Dataframe in.
+    :param cols_no_space:  (list of strings) Column names for columns that will have spaces removed from beginning and end.
+    :returns: (pd.DataFrame) Cleaned dataframe.
     '''
     if format_headers:
         # Changes columns from names 'NameLike THIS' to 'name_like_this'.
@@ -110,16 +109,15 @@ def map_many_entries(df, code_column, desired_names, check_keys_unique=True):
 def build_ids(path_to_ids, check_keys_unique=True):
     '''
     Makes dictionaries for for all columns in ids csv file. 
-    Args / Kwargs:
-        path_to_ids (path or string): Csv file containing known names and codes. 
-        Cannot have any blank entries.
-        check_keys_unique (boolean): Provides nice print outs for indentifying 
-        duplicate codes. Disable for slightly faster run time or to allow 
-        duplicate keys to be overwritten with last value.
+
+    Args:
+        path_to_ids (path or string): Csv file containing known names and \
+            codes. Cannot have any blank entries. 
+        check_keys_unique (boolean): Prevents duplicate keys from being \
+            overwritten with last value.
+    
     Returns:
-        name_mappings (list of dicts): A list of dictionaries in the order that 
-        they codes are arranged in the identifiers csv. 
-        
+        list of dicts: Same order as the codes in the ids csv. 
     '''
     df = pd.read_csv(path_to_ids)
     df = base_clean(
@@ -153,8 +151,7 @@ def build_ids(path_to_ids, check_keys_unique=True):
 def code_to_name(
     original_name, code, codes_dict, return_original, replacement_value):
     '''
-    Map original name to new name using codes dictionary if possible. 
-    Otherwise return orignal name.
+    Map original name to new name.
     '''
     if return_original:
         if code in codes_dict.keys():
@@ -176,18 +173,21 @@ def renamer(
     return_original=True, 
     replacement_value=None):
     '''
-    Renames dataframe column values based on rename dictionary. 
-    Args / Kwargs:
-        df (pandas.DataFrame) : Dataframe in.
-        rename_col (str) : Name of column for entries to rename.
-        code_col (str) : Name of column for entries that will be used 
-        identify the row. May be the same as rename_col.
-        rename_dict (dict) : Map from code_col value to rename_col new value.
-        return_original (bool) : If value not specified in ids.csv, then leaves
-        alone. If false, replaces unspecified values with replacement_value.
-        replacement_value (any type) : Value to replace unspecified values.
+    Renames column entries based on rename dictionary. 
+    
+    Args:
+        df (pd.DataFrame): Dataframe in.
+        rename_col (str): Name of column for entries to rename.
+        code_col (str): Name of column for entries that will be used \
+            identify the row. May be the same as rename_col.
+        rename_dict (dict): Map from code_col value to rename_col new value. \
+        return_original (bool): Whether to alter values not specified \
+            in ids.csv, 
+        replacement_value (any): If return_original equals False, value \
+            to replace unspecified values.
+    
     Returns:
-        df (pd.DataFrame): Renamed dataframe.
+        pd.DataFrame: Transformed dataframe.
     '''
     df.loc[:, rename_col] = list(map(
                 code_to_name, 
