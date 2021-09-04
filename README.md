@@ -1,7 +1,9 @@
 # The Renamer
 
-## Full documentation 
+## Documentation 
+[Documentation](https://the-renamer.readthedocs.io/en/latest/) hosted on Read the Docs 
 
+[Nice Implementation](URL) written on Medium
 
 ## What does The Renamer do?
 
