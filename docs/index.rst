@@ -31,15 +31,19 @@ The file used to contain the codes and known names is a csv file. Excel generall
 
 Test Coverage 
 
-There is pretty good test coverage, but I use some 2 mb files to test it, so the tests are in the 'test-master' branch.  If you are having an issue, the first thing, I will ask you to do is clone the most recent 'test-master' branch, run the tests, and then send me a screen shot.
+There is pretty good test coverage. If you are having an issue, the first thing I will ask you to do is clone the most recent 'master' branch, run the tests, and then send me a screen shot.
 
-`Github Test-Master Branch <https://github.com/Rowlando13/the_renamer/tree/test-master>`_
+`Github Master Branch <https://github.com/Rowlando13/the_renamer/tree/master>`_
 
 Best Way to Use 
 ===============
 Currentely, the best way to use The Renamer is by cloning the master branch and placing the_renamer.py and ids.csv in your working directory. The code is well thought out, but I did not want to clutter PyPI since it is only ~200 lines. If there is enough desire, then I am happy to. 
 
 `Github Master Branch <https://github.com/Rowlando13/the_renamer/tree/master>`_
+
+If you don't care about docs or tests, I provide a cleaner branch. This is just the Master Branch with docs and tests removed. 
+
+`Github No Test Master Branch <https://github.com/Rowlando13/the_renamer/tree/no-test-master>`_
 
 Functions
 =========
