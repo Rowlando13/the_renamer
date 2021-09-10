@@ -171,7 +171,8 @@ def renamer(
     code_col, 
     rename_dict, 
     return_original=True, 
-    replacement_value=None):
+    replacement_value=None,
+    in_place=False):
     '''
     Renames column entries based on rename dictionary. 
     
@@ -182,20 +183,34 @@ def renamer(
             identify the row. May be the same as rename_col.
         rename_dict (dict): Map from code_col value to rename_col new value. \
         return_original (bool): Whether to alter values not specified \
-            in ids.csv, 
+            in ids.csv. 
         replacement_value (any): If return_original equals False, value \
             to replace unspecified values.
+        in_place (bool): Make changes in place or return a copy of the \
+            Dataframe.
     
     Returns:
         pd.DataFrame: Transformed dataframe.
     '''
-    df.loc[:, rename_col] = list(map(
-                code_to_name, 
-                df.loc[:, rename_col],
-                df.loc[:, code_col],
-                [rename_dict] * df.shape[0],
-                [return_original]* df.shape[0],
-                [replacement_value]* df.shape[0]
-                )) 
-
-    return df 
+    if in_place==False:
+        renamed_df = df.copy()
+        df.loc[:, rename_col] = list(map(
+                    code_to_name, 
+                    df.loc[:, rename_col],
+                    df.loc[:, code_col],
+                    [rename_dict] * df.shape[0],
+                    [return_original]* df.shape[0],
+                    [replacement_value]* df.shape[0]
+                    )) 
+    else:
+        df.loc[:, rename_col] = list(map(
+                    code_to_name, 
+                    df.loc[:, rename_col],
+                    df.loc[:, code_col],
+                    [rename_dict] * df.shape[0],
+                    [return_original]* df.shape[0],
+                    [replacement_value]* df.shape[0]
+                    )) 
+        renamed_df = df
+    
+    return renamed_df

@@ -37,7 +37,7 @@ There is pretty good test coverage. If you are having an issue, the first thing 
 
 Best Way to Use 
 ===============
-Currentely, the best way to use The Renamer is by cloning the master branch and placing the_renamer.py and ids.csv in your working directory. The code is well thought out, but I did not want to clutter PyPI since it is only ~200 lines. If there is enough desire, then I am happy to. 
+Currently, the best way to use The Renamer is by cloning the master branch and placing the_renamer.py and ids.csv in your working directory. The code is well thought out, but I did not want to clutter PyPI since it is only ~200 lines. If there is enough desire, then I am happy to. 
 
 `Github Master Branch <https://github.com/Rowlando13/the_renamer/tree/master>`_
 
