@@ -14,10 +14,17 @@ import os
 import sys
 import pathlib
 
+# Add the_renamer to installation path
 conf_full_path = pathlib.Path(__file__)
 root_dir = conf_full_path.parent.parent
 main_dir = root_dir / ('the_renamer')
 sys.path.insert(1, str(main_dir))
+
+# Add the_renamer to installation path
+conf_full_path = pathlib.Path(__file__)
+root_dir = conf_full_path.parent.parent
+main_dir = root_dir / ('test')
+sys.path.insert(2, str(main_dir))
 
 
 # -- Project information -----------------------------------------------------

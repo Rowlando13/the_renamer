@@ -51,19 +51,14 @@
 </section>
 <section id="notes">
 <h1>Notes<a class="headerlink" href="#notes" title="Permalink to this headline">¶</a></h1>
-<p>To see a nice implementation, go to my <a class="reference external" href="url">Medium Article</a> .</p>
+<p>To see a nice implementation, go to my <a class="reference external" href="https://rowlando13.medium.com/the-renamer-e7592d4baf2a">Medium Article</a> .</p>
 <p>Excel Usage</p>
 <p>The file used to contain the codes and known names is a csv file. Excel generally does well with csv files; however, it has a nasty habit of converting 0230 to an integer then 230 when you open the file by double clicking it. To get around this, open Excel first and use Excel to open the file. By default it will give you an option to pick the deliminator and assign the text type to each column.</p>
-<p>Test Coverage</p>
-<p>There is pretty good test coverage. If you are having an issue, the first thing, I will ask you to do is clone the most recent ‘master’ branch, run the tests, and then send me a screen shot.</p>
-<p><a class="reference external" href="https://github.com/Rowlando13/the_renamer/tree/master">Github Master Branch</a></p>
 </section>
 <section id="best-way-to-use">
 <h1>Best Way to Use<a class="headerlink" href="#best-way-to-use" title="Permalink to this headline">¶</a></h1>
-<p>Currentely, the best way to use The Renamer is by cloning the master branch and placing the_renamer.py and ids.csv in your working directory. The code is well thought out, but I did not want to clutter PyPI since it is only ~200 lines. If there is enough desire, then I am happy to.</p>
+<p>Currently, the best way to use The Renamer is by cloning the master branch and placing the_renamer.py and ids.csv in your working directory. The code is well thought out, but I did not want to clutter PyPI since it is only ~200 lines. If there is enough desire, then I am happy to.</p>
 <p><a class="reference external" href="https://github.com/Rowlando13/the_renamer/tree/master">Github Master Branch</a></p>
-<p>If you don’t care about docs or tests, I provide a cleaner branch. This is just the Master Branch with docs and tests removed.</p>
-<p><a class="reference external" href="https://github.com/Rowlando13/the_renamer/tree/no-test-master">Github No Test Master Branch</a></p>
 </section>
 <section id="functions">
 <h1>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h1>
@@ -89,7 +84,7 @@
 
 <dl class="py function">
 <dt class="sig sig-object py" id="the_renamer.renamer">
-<span class="sig-prename descclassname"><span class="pre">the_renamer.</span></span><span class="sig-name descname"><span class="pre">renamer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rename_col</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">code_col</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rename_dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_original</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">replacement_value</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#the_renamer.renamer" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">the_renamer.</span></span><span class="sig-name descname"><span class="pre">renamer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rename_col</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">code_col</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rename_dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_original</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">replacement_value</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">in_place</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#the_renamer.renamer" title="Permalink to this definition">¶</a></dt>
 <dd><p>Renames column entries based on rename dictionary.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -97,8 +92,10 @@
 <li><p><strong>df</strong> (<em>pd.DataFrame</em>) – Dataframe in.</p></li>
 <li><p><strong>rename_col</strong> (<em>str</em>) – Name of column for entries to rename.</p></li>
 <li><p><strong>code_col</strong> (<em>str</em>) – Name of column for entries that will be used             identify the row. May be the same as rename_col.</p></li>
-<li><p><strong>rename_dict</strong> (<em>dict</em>) – Map from code_col value to rename_col new value.         return_original (bool): Whether to alter values not specified             in ids.csv,</p></li>
+<li><p><strong>rename_dict</strong> (<em>dict</em>) – Map from code_col value to rename_col new value.</p></li>
+<li><p><strong>return_original</strong> (<em>bool</em>) – Whether to alter values not specified             in ids.csv.</p></li>
 <li><p><strong>replacement_value</strong> (<em>any</em>) – If return_original equals False, value             to replace unspecified values.</p></li>
+<li><p><strong>in_place</strong> (<em>bool</em>) – Make changes in place or return a copy of the             Dataframe.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -115,12 +112,94 @@
 <h1>IDs.csv<a class="headerlink" href="#ids-csv" title="Permalink to this headline">¶</a></h1>
 <dl class="simple">
 <dt>This just a normal csv file with a few rules:</dt><dd><ol class="arabic simple">
-<li><p>In the second row of each column you must have ‘destination’, ‘one’, or ‘many’.</p></li>
+<li><p>Row 1, enter the names of the columns. The names are for your own book keeping. They don’t appear anywhere else. They must be unique within row 1.</p></li>
+<li><p>Row 2, enter you must have ‘destination’, ‘one’, or ‘many’ based on the type of column.</p>
+<ul class="simple">
+<li><p>‘Destination’ type columns contain the desired name.</p></li>
+<li><p>‘One’ type columns contains only single entries.</p></li>
+<li><p>‘Many’ type columns contain multiple entries separated by a comma.</p></li>
+</ul>
+</li>
 <li><p>You can only have one ‘destination’ column. You can have arbitrarily many ‘one’ or ‘many’ columns. The columns can be arbitrarily long.</p></li>
 <li><p>The entries in the ‘destination’ or ‘one’ column can be any type, but the ‘many’ columns entries must be str type.</p></li>
+<li><p>No entries can be blank. If no value is desired, use ‘&lt;NONE&gt;’. If the value of ‘&lt;NONE&gt;’ is desired you change this by updating the ‘none_value’ variable at the top of the_renamer.py.</p></li>
 </ol>
 </dd>
 </dl>
+<p>US States Example ids.csv</p>
+<p>(displayed as if editing in Excel or Google sheets)</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 17%" />
+<col style="width: 14%" />
+<col style="width: 68%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>desired</p></th>
+<th class="head"><p>most_common</p></th>
+<th class="head"><p>all</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>destination</p></td>
+<td><p>single</p></td>
+<td><p>many</p></td>
+</tr>
+<tr class="row-odd"><td><p>AL</p></td>
+<td><p>Alabama</p></td>
+<td><p>alabama, ALABAMA, Alabama, BAMA</p></td>
+</tr>
+<tr class="row-even"><td><p>AK</p></td>
+<td><p>&lt;NONE&gt;</p></td>
+<td><p>Arkansas, arkansas, ARKANSAS, The Other Kansas</p></td>
+</tr>
+<tr class="row-odd"><td><p>AZ</p></td>
+<td><p>Arizona</p></td>
+<td><p>Arizona, arizona, ARIZONA</p></td>
+</tr>
+<tr class="row-even"><td><p>…</p></td>
+<td><p>…</p></td>
+<td><p>…</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="test-coverage">
+<h1>Test Coverage<a class="headerlink" href="#test-coverage" title="Permalink to this headline">¶</a></h1>
+<p>There is pretty good test coverage. If you are having an issue, the first thing I will ask you to do is clone the most recent ‘master’ branch, run the tests, and then send me a screen shot.</p>
+<p><a class="reference external" href="https://github.com/Rowlando13/the_renamer/tree/master">Github Master Branch</a></p>
+<dl class="py class">
+<dt class="sig sig-object py" id="test_the_renamer.TestRenamer">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">test_the_renamer.</span></span><span class="sig-name descname"><span class="pre">TestRenamer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">methodName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'runTest'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#test_the_renamer.TestRenamer" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="test_the_renamer.TestRenamer.setUp">
+<span class="sig-name descname"><span class="pre">setUp</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#test_the_renamer.TestRenamer.setUp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Hook method for setting up the test fixture before exercising it.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="test_the_renamer.TestRenamer.test_many_keys_replacement">
+<span class="sig-name descname"><span class="pre">test_many_keys_replacement</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#test_the_renamer.TestRenamer.test_many_keys_replacement" title="Permalink to this definition">¶</a></dt>
+<dd><p>Test using dictionary built from ‘many’ column from ids.csv.
+Returns ‘non-state’ for values not found in dictionary.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="test_the_renamer.TestRenamer.test_many_keys_return_original">
+<span class="sig-name descname"><span class="pre">test_many_keys_return_original</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#test_the_renamer.TestRenamer.test_many_keys_return_original" title="Permalink to this definition">¶</a></dt>
+<dd><p>Test using dictionary built from ‘many’ column from ids.csv.
+Returns original values for values not found in dictionary.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="test_the_renamer.TestRenamer.test_single_key_return_original">
+<span class="sig-name descname"><span class="pre">test_single_key_return_original</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#test_the_renamer.TestRenamer.test_single_key_return_original" title="Permalink to this definition">¶</a></dt>
+<dd><p>Test using dictionary built from ‘single’ column from ids.csv.
+Returns original values for values not found in dictionary.</p>
+</dd></dl>
+
+</dd></dl>
+
 </section>
 
 
@@ -138,6 +217,7 @@
 <li><a class="reference internal" href="#best-way-to-use">Best Way to Use</a></li>
 <li><a class="reference internal" href="#functions">Functions</a></li>
 <li><a class="reference internal" href="#ids-csv">IDs.csv</a></li>
+<li><a class="reference internal" href="#test-coverage">Test Coverage</a></li>
 </ul>
 
   <div role="note" aria-label="source link">

@@ -3,7 +3,7 @@
 ## Documentation 
 [Documentation](https://the-renamer.readthedocs.io/en/latest/) hosted on Read the Docs 
 
-[Nice Implementation](URL) written on Medium
+[Nice Implementation](https://rowlando13.medium.com/the-renamer-e7592d4baf2a) written on Medium
 
 ## What does The Renamer do?
 

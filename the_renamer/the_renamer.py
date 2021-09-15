@@ -181,7 +181,7 @@ def renamer(
         rename_col (str): Name of column for entries to rename.
         code_col (str): Name of column for entries that will be used \
             identify the row. May be the same as rename_col.
-        rename_dict (dict): Map from code_col value to rename_col new value. \
+        rename_dict (dict): Map from code_col value to rename_col new value.
         return_original (bool): Whether to alter values not specified \
             in ids.csv. 
         replacement_value (any): If return_original equals False, value \

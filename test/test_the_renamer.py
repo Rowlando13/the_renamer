@@ -39,7 +39,7 @@ class TestRenamer(TestCase):
         self.id_maps = build_ids(ids)
         
     def test_single_key_return_original(self):
-        '''Test using dictionary build from 'single' column from ids.csv. 
+        '''Test using dictionary built from 'single' column from ids.csv. 
         Returns original values for values not found in dictionary.'''
         renamed = renamer(
             self.test_df, 'location', 'location', self.id_maps[0])
@@ -51,7 +51,7 @@ class TestRenamer(TestCase):
         self.assertTrue(all_same)
         
     def test_many_keys_return_original(self):
-        '''Test using dictionary build from 'many' column from ids.csv. 
+        '''Test using dictionary built from 'many' column from ids.csv. 
         Returns original values for values not found in dictionary.'''
         # Tests reading and writing from different columns.
         renamed = renamer(
@@ -63,7 +63,7 @@ class TestRenamer(TestCase):
         self.assertTrue(all_same)
     
     def test_many_keys_replacement(self):
-        '''Test using dictionary build from 'many' column from ids.csv. 
+        '''Test using dictionary built from 'many' column from ids.csv. 
         Returns 'non-state' for values not found in dictionary.'''
         renamed = renamer(
             self.test_df, 
