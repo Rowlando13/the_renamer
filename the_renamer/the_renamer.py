@@ -194,23 +194,16 @@ def renamer(
     '''
     if in_place==False:
         renamed_df = df.copy()
-        df.loc[:, rename_col] = list(map(
-                    code_to_name, 
-                    df.loc[:, rename_col],
-                    df.loc[:, code_col],
-                    [rename_dict] * df.shape[0],
-                    [return_original]* df.shape[0],
-                    [replacement_value]* df.shape[0]
-                    )) 
     else:
-        df.loc[:, rename_col] = list(map(
-                    code_to_name, 
-                    df.loc[:, rename_col],
-                    df.loc[:, code_col],
-                    [rename_dict] * df.shape[0],
-                    [return_original]* df.shape[0],
-                    [replacement_value]* df.shape[0]
-                    )) 
         renamed_df = df
+        
+    renamed_df.loc[:, rename_col] = list(map(
+                    code_to_name, 
+                    renamed_df.loc[:, rename_col],
+                    renamed_df.loc[:, code_col],
+                    [rename_dict] * renamed_df.shape[0],
+                    [return_original]* renamed_df.shape[0],
+                    [replacement_value]* renamed_df.shape[0]
+                    )) 
     
     return renamed_df

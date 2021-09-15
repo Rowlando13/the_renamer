@@ -7,8 +7,8 @@ from pprint import pprint
 
 import pandas as pd
 
-# Add functions the_renamer.py to system path.
 # TODO see if this is cross platform.
+# Add functions the_renamer.py to system path.
 test_full_path = pathlib.Path(__file__)
 root_dir = test_full_path.parent.parent
 main_dir = root_dir / ('the_renamer')
@@ -34,29 +34,37 @@ class TestRenamer(TestCase):
         
         
         ids = os.path.join(test_path, 'test_ids.csv')
+        # (Full name -> 2 letter abbreviation, 
+        # many names -> 2 letter abbreviation)
         self.id_maps = build_ids(ids)
         
-    def test_single_key_no_replacement(self):
+    def test_single_key_return_original(self):
+        '''Test using dictionary build from 'single' column from ids.csv. 
+        Returns original values for values not found in dictionary.'''
         renamed = renamer(
             self.test_df, 'location', 'location', self.id_maps[0])
         # Column verified by hand for test.
         validated_data = renamed.loc[:, 'test_abbr_no_replacement']
-        the_same = self.test_df.loc[:, 'location'] == validated_data
+        the_same = renamed.loc[:, 'location'] == validated_data
         all_same = all(list(the_same))
+        
         self.assertTrue(all_same)
         
-    def test_many_keys_no_replacement(self):
+    def test_many_keys_return_original(self):
+        '''Test using dictionary build from 'many' column from ids.csv. 
+        Returns original values for values not found in dictionary.'''
         # Tests reading and writing from different columns.
         renamed = renamer(
             self.test_df, 'location', '2nd_location', self.id_maps[1])
         # Same column reused since the same substitutions should have been made.
         validated_data = renamed.loc[:, 'test_abbr_no_replacement']
-        the_same = self.test_df.loc[:, 'location'] == validated_data
+        the_same = renamed.loc[:, 'location'] == validated_data
         all_same = all(list(the_same))
         self.assertTrue(all_same)
     
     def test_many_keys_replacement(self):
-        # Tests reading and writing from different columns with replacement.
+        '''Test using dictionary build from 'many' column from ids.csv. 
+        Returns 'non-state' for values not found in dictionary.'''
         renamed = renamer(
             self.test_df, 
             'location', 
@@ -66,13 +74,12 @@ class TestRenamer(TestCase):
             replacement_value='non-state')
         
         validated_data = renamed.loc[:, 'test_abbr_replacement']
-        the_same = self.test_df.loc[:, 'location'] == validated_data
+        the_same = renamed.loc[:, 'location'] == validated_data
         all_same = all(list(the_same))
         self.assertTrue(all_same)
 
 
 if __name__ == '__main__':
-    
     unittest.main()
     
 
